@@ -2,12 +2,22 @@ import requests
 import eccodes as ec
 from datetime import datetime, timedelta, timezone
 import argparse
+import os
+
+home_dir = os.path.expanduser("~")
+file_path = os.path.join(home_dir, 'output_with_steps.grib2')
 
 # Step 1: Set up argparse to handle command-line arguments
 parser = argparse.ArgumentParser(description="Download GeoJSON data and convert to GRIB2.")
 parser.add_argument("--api-key", required=True, help="API key for accessing the weather data.")
 parser.add_argument("--bbox", required=False,default="9.29,54.54,13.04,56.19", help="Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).")
+parser.add_argument("--out-file", required=False,default=file_path,help="The location of the output file - default: os homedir")
 args = parser.parse_args()
+
+if args.out_file != "":
+    file_path = args.out_file
+
+print("Output file location: "+file_path)
 
 print("Bounding box used: "+args.bbox)
 
@@ -51,7 +61,7 @@ if geojson_data:
 
 
     # Step 5: Create a GRIB2 file with steps
-    with open("output_with_steps.grib2", "wb") as grib_file:
+    with open(file_path, "wb") as grib_file:
         for step_time, data in data_by_step.items():
             forecast_time = datetime.fromisoformat(step_time.replace("Z", "+00:00")).astimezone(timezone.utc)
             forecast_hour = int((forecast_time - datetime(2024, 8, 10, 0, 0, tzinfo=timezone.utc)).total_seconds() / 3600)
