@@ -29,5 +29,8 @@ options:
     
     >> python3.11 DMI_EDS2grib.py --bbox=9.11,53.51,15.22,57.46 --api-key=xxxx
 
+  ### Getting the api key:
+  https://dmiapi.govcloud.dk/
+
   #### Bounding box tool:  
     https://boundingbox.klokantech.com/
