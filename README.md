@@ -22,6 +22,8 @@ options:
     --help         show this help message and exit  
     --api-key API_KEY  API key for accessing the weather data.  
     --bbox BBOX        Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).  
+    --out-file OUT_FILE  The location of the output file - default: os homedir  
+
     
     For most of Denamrk use this Bounding box - or for Sjællannd and Fyn - use the default:  
     
