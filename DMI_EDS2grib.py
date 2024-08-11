@@ -9,7 +9,7 @@ parser.add_argument("--api-key", required=True, help="API key for accessing the 
 parser.add_argument("--bbox", required=False,default="9.29,54.54,13.04,56.19", help="Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).")
 args = parser.parse_args()
 
-print(args.bbox)
+print("Bounding box used: "+args.bbox)
 
 # Step 2: Generate the dynamic datetime for the URL (current time UTC minus 1 hour)
 current_time_utc_minus_1_hour = datetime.now(timezone.utc) - timedelta(hours=1)
@@ -22,6 +22,7 @@ print(url)
 
 # Step 3: Download GeoJSON data
 response = requests.get(url)
+print("Data downloaded:" + str(len(response.content)/1024) + "kb")
 
 if response.status_code == 200:
     geojson_data = response.json()
