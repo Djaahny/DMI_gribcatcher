@@ -13,9 +13,9 @@ just run with your API key as argument.
 
 
 ## Running
-Download GeoJSON data and convert to GRIB2.
-
-options:
-  -h, --help         show this help message and exit
-  --api-key API_KEY  API key for accessing the weather data.
-  --bbox BBOX        Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).
+Download GeoJSON data and convert to GRIB2.  
+  
+options:  
+    --help         show this help message and exit  
+    --api-key API_KEY  API key for accessing the weather data.  
+    --bbox BBOX        Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).
