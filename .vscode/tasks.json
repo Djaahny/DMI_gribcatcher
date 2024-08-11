@@ -1,0 +1,70 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "DMI Test",
+            "type": "process",
+            "command": "dmi_util.cmd",
+            "args": [
+                "test"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "DMI Peek",
+            "type": "process",
+            "command": "dmi_util.cmd",
+            "args": [
+                "peek"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "DMI Build",
+            "type": "process",
+            "command": "dmi_util.cmd",
+            "args": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "DMI Run",
+            "type": "process",
+            "command": "dmi_util.cmd",
+            "args": [
+                "run"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "DMI Delete",
+            "type": "process",
+            "command": "dmi_util.cmd",
+            "args": [
+                "remove"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+    ]
+}

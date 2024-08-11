@@ -1,0 +1,5 @@
+eccodes==1.7.1
+datetime
+argparse
+requests
+python-dotenv
