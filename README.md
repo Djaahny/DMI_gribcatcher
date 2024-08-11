@@ -7,7 +7,7 @@ This files will get grib wind data from DMI's api and convert it to grib data to
 
 # Setting up on Windows
 1. Install [Docker](https://www.docker.com/)
-2. Create `.env` file and put `API_TOKEN=<api_token_here>` 
+2. Create `.env` file and put `API_KEY=<api_token_here>` 
 ## Running on Windows
 1. Run `dmi_util test` in **COMMAND PROMPT**
 2. Or use VSCode and press `Ctrl+Shift+P` and search for `Tasks: Run Task` then select it, and run `DMI Test`
@@ -19,7 +19,7 @@ This files will get grib wind data from DMI's api and convert it to grib data to
 # Setting up on Linux
 1. Run `chmod +x setup.sh`
 2. Run `setup.sh`
-3. Open up `.env` and put `API_TOKEN=<api_token_here>` 
+3. Open up `.env` and put `API_KEY=<api_token_here>` 
 ## Running on Linux
 1. In bash run `source venv/bin/activate`
 2. Run `python DMI_EDS2grib.py <args>`
