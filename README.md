@@ -18,8 +18,8 @@ This files will get grib wind data from DMI's api and convert it to grib data to
 
 # Setting up on Linux
 1. Run `chmod +x setup.sh`
-2. Run `setup.sh`
-3. Open up `.env` and put `API_KEY=<api_token_here>` 
+2. Run `./setup.sh`
+3. Create `.env` and put `API_KEY=<api_token_here>` 
 ## Running on Linux
 1. In bash run `source venv/bin/activate`
 2. Run `python DMI_EDS2grib.py <args>`
