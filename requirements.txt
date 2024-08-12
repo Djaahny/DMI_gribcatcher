@@ -3,3 +3,4 @@ datetime
 argparse
 requests
 python-dotenv
+tqdm

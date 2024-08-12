@@ -4,23 +4,29 @@ from datetime import datetime, timedelta, timezone
 import argparse
 import os
 from dotenv import load_dotenv
+from tqdm import tqdm
+import json
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Get the API key from environment variables
 api_key = os.getenv("API_KEY")
-if not api_key:
-    raise ValueError("API_KEY not found in .env file")
 
 home_dir = os.path.expanduser("~")
 file_path = os.path.join(home_dir, 'output_with_steps.grib2')
 
 # Step 1: Set up argparse to handle command-line arguments
 parser = argparse.ArgumentParser(description="Download GeoJSON data and convert to GRIB2.")
-parser.add_argument("--bbox", required=False, default="9.29,54.54,13.04,56.19", help="Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).")
+parser.add_argument("--bbox", required=False, default="9.29,54.54,13.04,56.19", help="Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner danish waters).")
 parser.add_argument("--out-file", required=False, default=file_path, help="The location of the output file - default: os homedir")
+parser.add_argument("--api-key", required=api_key==None, default=None, help="Overwrites the API_KEY located in .env")
 args = parser.parse_args()
+
+# Check if --api-key is set
+if not (args.api_key == None):
+    print("API Key overwritten")
+    api_key = args.api_key
 
 if args.out_file != "":
     file_path = args.out_file
@@ -37,12 +43,22 @@ url = f"https://dmigw.govcloud.dk/v1/forecastedr/collections/dkss_nsbs/cube?bbox
 
 print(url)
 
-# Step 3: Download GeoJSON data
-response = requests.get(url)
-print("Data downloaded: " + str(len(response.content) / 1024) + "kb")
+# Step 3: Download GeoJSON data with a progress bar
+response = requests.get(url, stream=True)
+
+total_size = int(response.headers.get('content-length', 0))  # Get total file size
+block_size = 1024  # 1 KB block size
+tqdm_bar = tqdm(total=total_size, unit='iB', unit_scale=True)
+
+content = b""
+for data in response.iter_content(block_size):
+    tqdm_bar.update(len(data))
+    content += data
+
+tqdm_bar.close()
 
 if response.status_code == 200:
-    geojson_data = response.json()
+    geojson_data = json.loads(content)
     print("GeoJSON data downloaded successfully.")
 else:
     print("Failed to download GeoJSON data.")

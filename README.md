@@ -28,10 +28,10 @@ This files will get grib wind data from DMI's api and convert it to grib data to
 ## Program Info
 Downloads a GeoJSON file and converts it to GRIB2.  
   
-options:  
-    --help         show this help message and exit  
-    --bbox BBOX        Bounding box of area to download - default is: 9.29,54.54,13.04,56.19 (inner inner danish waters).  
-    --out-file OUT_FILE  The location of the output file - default: os homedir  
+Help:
+  --bbox BBOX          Bounding box of area to download - default is: 9.29,54.54,13.04,56.19(inner inner dansih waters).
+  --out-file OUT_FILE  The location of the output file - default: os homedir
+  --api-key API_KEY    Overwrites the API_KEY located in .env
 
   ### Example for Denmark
     For most of Denmark use this Bounding box:
